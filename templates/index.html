@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+
+<style>
+    /* Set a style for all buttons */
+button {
+  background-color: #06deee;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+}
+</style>
+<body>
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    {% endfor %}
+
+    <h2>Django Login Page</h2>
+
+
+    {% if user.is_authenticated %}
+    <h3>Hello {{fname}}!</h3>
+    <h4>You're successfully logged in.</h4>
+    <button type="submit"><a href="{% url 'signout' %}">SignOut</a></button>
+    {% else %}
+    <button type="submit"><a href="/signup">SignUp</a></button>
+    <br/>
+    <br/>
+    <button type="submit"><a href="/signin">SignIn</a></button>
+    {% endif %}
+
+    {% if signout %}
+    <h3>Logged Out Succesfully</h3>
+    <button type="submit"><a href="/signup">SignUp</a></button>
+    <br/>
+    <br/>
+    <button type="submit"><a href="/signin">SignIn</a></button>
+    {% endif %}
+
+
+</body>
+</html>
